@@ -1,0 +1,38 @@
+﻿@model IEnumerable<JSONTestURI.Models.Employee1>
+
+@{
+    ViewBag.Title = "HOME";
+}
+
+<div class="form-horizontal">
+
+    <hr />
+    <div class="form-group">
+
+
+        <table class="table table-responsive" style="width:400px">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.success)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.successmassage)
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.success)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.successmassage)
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</div>  

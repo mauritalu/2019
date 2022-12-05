@@ -1,0 +1,44 @@
+﻿@model MultiHttpClient.ViewModel.MultiHttpClientViewModel
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < Model.Response.CatData.Count; i++)
+    {
+        <tr>
+            <td>
+                @Model.Response.CatData[i].BankName               
+                @Html.TextBox("Persnr", Model.ResponseLiik.LiikData.FirstOrDefault(x => x.LiikId == Model.Response.CatData[i].Persnr).LiikName)
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Response.CatData[i].kundnr })
+            </td>
+        </tr>
+    }
+
+    @foreach (var liik in Model.ResponseLiik.LiikData)
+    {
+        <tr>
+            <td>
+                @liik.LiikId @liik.LiikName
+            </td>
+        </tr>
+    }
+
+    <tr>
+        <td>
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+
+</table>

@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "RESTAPI", FormMethod.Post))
+        {
+            <span>BankName</span>@Html.TextBox("txtBankName")<br />
+            <span>Persnr</span>@Html.TextBox("txtPersnr")<br />
+            <span>kundnr</span>@Html.TextBox("txtkundnr")<br />
+            <span>@ViewData["Result"]</span>
+            <button type="submit">Show</button>
+        }
+    </div>
+</body>
+</html>

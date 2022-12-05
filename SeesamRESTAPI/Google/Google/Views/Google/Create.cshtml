@@ -1,0 +1,58 @@
+﻿@model Google.Models.CatData
+
+
+@{
+    Layout = null;
+}
+
+@using Resources;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+    @{
+        if (TempData["successMsg"] != null)
+        {
+            <text>
+                <script type="text/javascript">
+                    alert('@TempData["successMsg"]');
+                </script>
+            </text>
+
+            <div>@TempData["successMsg"]</div>
+        }
+    }
+
+    @using (Html.BeginForm("Create", "Google", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>@Text.BankName</td>
+                <td>@Html.TextBoxFor(m => m.BankName)</td>
+            </tr>
+            <tr>
+                <td>@Text.Persnr</td>
+                <td>@Html.TextBoxFor(m => m.Persnr)</td>
+            </tr>
+            <tr>
+                <td>@Text.kundnr</td>
+                <td>@Html.TextBoxFor(m => m.kundnr)</td>
+            <tr>
+                <td>@Text.ExpectedAmount</td>
+                <td>@Html.TextBoxFor(m => m.ExpectedAmount)</td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    <input type="submit" value="Create" />
+                </td>
+            </tr>
+        </table>
+    }
+</body>
+</html>

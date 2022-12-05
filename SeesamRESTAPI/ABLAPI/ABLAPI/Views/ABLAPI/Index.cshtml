@@ -1,0 +1,94 @@
+﻿@model ABLAPI.ViewModels.ABLAPIViewModel
+
+@{
+    Layout = null;
+}
+
+@using Resources;
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <title>Index</title>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ResponseOut").fadeTo(2000, 0);
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <br>
+                <h2>ABLAPI</h2>
+                @ViewContext.RouteData.Values["Controller"] / @ViewContext.RouteData.Values["Action"]
+
+                <div><br>@Html.DisplayFor(model => model.Create_Response.SuccessMessage, new { @class = "validation-summary-true" })</div>
+
+                @*@if (TempData["successMsg"] != null)
+                {
+                    <div id="ResponseOut"><br>@TempData["successMsg"]</div>
+                }
+                else
+                {
+                    <br><br><div>&nbsp;</div>
+                }*@
+
+                <br>
+                <table class="table">
+                    <colgroup>
+                        <col class="col-md-1">
+                        <col class="col-md-2">
+                        <col class="col-md-4">
+                        <col class="col-md-1">
+                    </colgroup>
+                    <tr>
+                        @using (Html.BeginForm("Index", "ABLAPI", FormMethod.Post))
+                        {
+                            <td colspan="4">
+                                @Html.AntiForgeryToken()
+                                @Html.TextBox("Otsi", null, new { @class = "form-control" })
+                            </td>
+                            <td>
+                                <input type="submit" value="Otsi nime" class="btn btn-outline-success submit" />
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td><strong>@Text.kundnr</strong></td>
+                        <td><strong>@Text.Persnr</strong></td>
+                        <td><strong>@Text.BankName</strong></td>
+                        <td><strong>@Text.ExpectedAmount</strong></td>
+                        <td><strong>&nbsp;</strong></td>
+                    </tr>
+
+                    @for (int i = 0; i < Model.Response.CatData.Count; i++)
+                    {
+                        <tr>
+                            <td>@Model.Response.CatData[i].kundnr</td>
+                            <td>@Model.ResponseLiik.LiikData.FirstOrDefault(x => x.LiikId == Model.Response.CatData[i].Persnr).LiikName</td>
+                            <td>@Model.Response.CatData[i].BankName</td>
+                            <td>@Model.Response.CatData[i].ExpectedAmount</td>
+                            <td align="right">
+                                @Html.ActionLink("Muuda", "Edit", new { id = Model.Response.CatData[i].kundnr }) |
+                                @Html.ActionLink("Kustuta", "Delete", new { id = Model.Response.CatData[i].kundnr }, new { onclick = "return confirm('Kas soovid " + Model.Response.CatData[i].BankName + " eemaldada?')" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <hr>
+                |&nbsp;@Html.ActionLink("Index", "Index")&nbsp;|&nbsp;@Html.ActionLink("Create", "Create")&nbsp;|
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

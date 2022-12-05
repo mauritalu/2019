@@ -1,0 +1,30 @@
+﻿@model ABLAPI.ViewModels.ABLAPIViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Error</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <br>
+                <h2>ABLAPI</h2>
+                @ViewContext.RouteData.Values["Controller"] / @ViewContext.RouteData.Values["Action"]
+
+                <hr width="400" align="left">
+                eee
+                @Html.DisplayFor(model => model.Create_Response.SuccessMessage, new { @class = "validation-summary-true" })
+            </div>
+        </div>
+    </div>
+</body>
+</html>

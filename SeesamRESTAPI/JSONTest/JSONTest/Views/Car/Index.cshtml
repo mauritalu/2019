@@ -1,0 +1,15 @@
+﻿@model IEnumerable<JSONTest.Models.Car>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+
+
+@foreach (var car in Model) {
+    <li>
+        @car.Make, @car.Model
+    </li>
+}

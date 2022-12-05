@@ -1,0 +1,6 @@
+namespace DropDown.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}

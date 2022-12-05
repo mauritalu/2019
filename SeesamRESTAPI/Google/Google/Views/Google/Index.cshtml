@@ -1,0 +1,105 @@
+﻿@model Google.Models.Response
+
+@{
+    Layout = null;
+}
+
+@using Resources;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    @{
+        if (TempData["successMsg"] != null)
+        {
+            @*<text>
+                <script type="text/javascript">
+                    alert('@TempData["successMsg"]');
+                </script>
+            </text>*@
+
+            <div>@TempData["successMsg"]</div>
+        }
+    }
+
+    <table width="500" cellspacing="0" cellpadding="0" border="0" bgcolor="teal" align="center">
+        <tr>
+            <td>
+                <table width="100%" cellspacing="1" cellpadding="1" border="0" align="center">
+                    <tr bgcolor="ffffff" align="left">
+                        <td colspan="2"><font face="Verdana,Geneva,sans-serif" size="2">@Text.Success</font></td>
+                        <td colspan="2"><font face="Verdana,Geneva,sans-serif" size="2">@Model.Success</font></td>
+                        <td align="center"><font face="Verdana,Geneva,sans-serif" size="2">@Html.ActionLink("Loo uus", "Create")</font></td>
+                    </tr>
+                    <tr bgcolor="ffffff" align="left">
+                        <td colspan="2"><font face="Verdana,Geneva,sans-serif" size="2">@Text.SuccessMessage</font></td>
+                        <td colspan="3"><font face="Verdana,Geneva,sans-serif" size="2">@Model.SuccessMessage</font></td>
+                    </tr>
+                    <tr bgcolor="teal" align="center">
+                        <td><font face="Verdana,Geneva,sans-serif" size="2" color="ffffff">@Text.kundnr</font></td>
+                        <td><font face="Verdana,Geneva,sans-serif" size="2" color="ffffff">@Text.BankName</font></td>
+                        <td><font face="Verdana,Geneva,sans-serif" size="2" color="ffffff">@Text.ExpectedAmount</font></td>
+                        <td><font face="Verdana,Geneva,sans-serif" size="2" color="ffffff">@Text.Persnr</font></td>
+                        <td><font face="Verdana,Geneva,sans-serif" size="2" color="ffffff">Toimingud</font></td>
+                    </tr>
+                    @foreach (var cat in Model.CatData)
+                    {
+                        <tr bgcolor="ffffff" align="left">
+                            <td width="100"><font face="Verdana,Geneva,sans-serif" size="2">@cat.kundnr</font></td>
+                            <td width="100"><font face="Verdana,Geneva,sans-serif" size="2">@cat.BankName</font></td>
+                            <td width="80"><font face="Verdana,Geneva,sans-serif" size="2">@cat.ExpectedAmount</font></td>
+                            <td width="100"><font face="Verdana,Geneva,sans-serif" size="2">@cat.Persnr</font></td>
+                            <td width="120" align="center">
+                                <font face="Verdana,Geneva,sans-serif" size="2">
+                                    @*<a onclick="return confirm('Kindel?')" href="@Url.Action("Edit", "Google", new { id=@cat.kundnr })">Muuda</a>*@
+                                    @Html.ActionLink("Muuda", "Edit", new { id=@cat.kundnr }) |
+                                    @Html.ActionLink("Kustuta", "Delete", new { id = @cat.kundnr }, new { onclick = "return confirm('Are sure wants to delete?');" })
+                                </font>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        </tr>
+
+    </table>
+
+
+    @*<table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(Model => Model.SuccessMessage)
+                </th>
+                <th>
+                    @Text.BankName
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var cat in Model.CatData)
+
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(catItem => Model.SuccessMessage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(catItem => cat.BankName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+
+        </table>*@
+</body>
+</html>

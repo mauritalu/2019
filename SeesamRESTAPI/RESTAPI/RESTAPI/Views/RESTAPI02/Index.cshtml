@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+@model RESTAPI.Models.RESTAPIInputModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "RESTAPI02", FormMethod.Post))
+        {
+            <span>BankName</span>@Html.TextBox("txtBankName")<br />
+            <span>Persnr</span>@Html.TextBox("txtPersnr")<br />
+            <span>kundnr</span>@Html.TextBox("txtkundnr")<br />
+            <span>@ViewData["Result"]</span>
+
+            if (Model != null)
+            {
+                <span>@Model.getTogether()</span>
+            }
+            <button type="submit">Show</button>
+        }
+    </div>
+</body>
+</html>
